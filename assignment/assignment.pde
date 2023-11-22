@@ -1,13 +1,10 @@
 Circle[][] circles = new Circle[40][40];
 
-color color_from = color(204, 102, 0);
-color color_to = color(0, 102, 153);
-
-
 
 float startHue = 50; // Initial hue value
 float saturation = 50; // Saturation value (0 to 100)
 float brightness = 75; // Brightness value (0 to 100)
+
 
 color cyclicHSVColor(float value) {
   float hue = startHue + degrees(value) % 360; // Map the angle to the hue value in the range [0, 360)
@@ -38,30 +35,15 @@ void setup() {
       circles[i][j] = new Circle(x, y, ax, ay, az, size, change_angleX, change_angleY, 0);
     }
   }
-  //myCircle2 = new Circle(300.0, 300.0, 0.0, 0.0, 0.0, 50.0, 10, 10, 0);
-  //myCircle3 = new Circle(300, 300, 0, 0, 0, 50, 0, 0, 1);
 }
 
 void draw() {
   background(0);
 
-    // Move the origin to the center of the canvas
-  //rotateX(myCircle1.angleX);  // Rotate around the X-axis
-  //rotateY(myCircle1.angleY);  // Rotate around the Y-axis
-  //rotateZ(myCircle1.angleZ);  // Rotate around the Z-axis
-  //for (int i = 0; i <= 1000; i++) {
-  //myCircle1.display();
-  //}
-
-  
-  //myCircle3.display();
   
   for (int i = 0; i < circles.length; i++) {
     
     for (int j = 0; j < circles[i].length; j++) {
-      
-     
-      
       circles[i][j].display(false);
     }
   }
@@ -93,7 +75,6 @@ class Circle {
     circleSize = size;
   }
 
-  //void display(float d_ax, float d_ay, float d_az) {
   void display(boolean print_val) {
     
     color interA;
@@ -101,25 +82,9 @@ class Circle {
     
     float total_rotation = angleX+ angleY;
      
-    //if (angleX <= 2*PI)
-    //{
-    //  interA = lerpColor(color_from, color_to, total_rotation/(2*PI));
-    //}
-    //else
-    //{
-    //  interA= lerpColor(color_to, color_from, (total_rotation-2*PI)/(2*PI));
-    //}
-    
     interA = cyclicHSVColor(total_rotation);
     
-    
-    
-    
-    
-    //float green = map(angleX, 0, 2*PI, 30, 230);
-    //float blue = map(angleX+ angleY, 0, 4*PI, 30, 230);
 
-    
     pushMatrix();
     translate(centerX, centerY, -10);
     rotateX(angleX);  // Rotate around the X-axis
@@ -130,8 +95,6 @@ class Circle {
     
     
     fill(0);
-    //stroke(red, 0, 0);
-    //stroke(255, 255, 255);
     stroke(interA);
     strokeWeight(3);
     ellipse(0, 0, circleSize, circleSize);
@@ -146,7 +109,6 @@ class Circle {
     
     angleY = angleY % (2*PI);
     
-    //angleZ += radians(change_angleZ);
     popMatrix();
     
   }
