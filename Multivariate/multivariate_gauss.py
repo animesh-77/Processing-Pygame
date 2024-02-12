@@ -11,8 +11,8 @@ WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Gaussian Plotter")
 
 # Gaussian parameters
-mu_x, sigma_x = WIDTH / 2, 100
-mu_y, sigma_y = HEIGHT / 2, 100
+mu_x, sigma_x = WIDTH / 2, 10
+mu_y, sigma_y = HEIGHT / 2, 10
 
 x = np.random.normal(loc=mu_x, scale=sigma_x, size=persistence)
 y = np.random.normal(loc=mu_y, scale=sigma_y, size=persistence)
@@ -37,7 +37,12 @@ def generate_points(x, y):
 def plot_points(x, y):
 
     for x1, y1 in zip(x, y):
-        pygame.draw.circle(WINDOW, (255, 0, 0), (x1, y1), 5)
+        pygame.draw.circle(WINDOW, (0, 255, 0), (x1, HEIGHT - 5), radius=5)
+        # x coordinates
+        pygame.draw.circle(WINDOW, (0, 0, 255), (5, y1), radius=5)
+        # y corrdinates
+        pygame.draw.circle(WINDOW, (255, 0, 0), (x1, y1), radius=5)
+        # points
 
 
 running = True
